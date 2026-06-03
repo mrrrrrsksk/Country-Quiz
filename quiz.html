@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="az">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bayraq Quiz Dizaynı</title>
+    <link rel="stylesheet" href="quiz.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="quiz-card">
+            <div class="header">
+                <span class="fire-icon">🔥 ×0</span>
+                <span class="question-count"></span>
+                <div class="timer"></div>
+                <span class="score">Score 0</span>
+            </div>
+
+            <h2 class="questionh2"></h2>
+
+            <div class="flag-placeholder">
+                <div class="flag-icon"></div>
+            </div>
+
+            <div class="options-grid">
+                <button class="option"></button>
+                <button class="option"></button>
+                <button class="option"></button>
+                <button class="option"></button>
+            </div>
+        </div>
+        <button class="nextbtn">Next question</button>
+
+
+        <div class="result-card">
+
+            <h2>Quiz Complete!</h2>
+
+            <div class="score-section">
+                <h1></h1>
+                <span>TOTAL POINTS</span>
+            </div>
+
+            <div class="stats">
+
+                <div class="stat-box">
+                    <p>Correct</p>
+                    <h3 class="green"></h3>
+                </div>
+
+                <div class="stat-box">
+                    <p>Wrong</p>
+                    <h3 class="red"></h3>
+                </div>
+
+                <div class="stat-box">
+                    <p>Best Streak</p>
+                    <h3 class="orange"></h3>
+                </div>
+
+            </div>
+
+            <div class="buttons">
+                <button class="play-btn">
+                    Play Again
+                </button>
+
+                <button class="mode-btn">
+                    Change Mode
+                </button>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <script src="quiz.js"></script>
+</body>
+
+</html>
