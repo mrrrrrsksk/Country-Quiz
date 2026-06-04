@@ -54,7 +54,7 @@ function quiz(gamemode) {
         resultstreaktext.innerHTML = `${streaks.length > 0 ? Math.max(...streaks) : 0}`
         return;
     }
-    fetch("https://restcountries.com/v3.1/all?fields=name,capital,currencies,borders,flags")
+    fetch("https://restcountries.com/v3.1/all?fields=name,capital,currencies,flags")
         .then(res => res.json())
         .then(data => {
             question++;
@@ -73,10 +73,6 @@ function quiz(gamemode) {
                     flagPlaceHolder.style.display = "none"
                     questionh2.innerHTML = `Which country is "${data[correctindex].capital}" the capital of?`
                     console.log("capital")
-                    break;
-                case "border":
-                    flagPlaceHolder.style.display = "none"
-                    console.log("border")
                     break;
                 case "currency":
                     flagPlaceHolder.style.display = "none"

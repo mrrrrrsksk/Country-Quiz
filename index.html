@@ -22,6 +22,7 @@
             <menu>
                 <li><a href="#section1">Home</a></li>
                 <li><a href="#section2">Game Modes</a></li>
+                <li><a href="#section3">Countries Database</a></li>
                 <li><a href="#footer">Contact</a></li>
             </menu>
         </div>
@@ -30,12 +31,12 @@
     <section id="section1" class="section1">
         <div class="container">
             <h1>Test Your Geography <span>Knowledge</span></h1>
-            <p>Play fast-paced quizzes using real-world country data. Master flags, capitals, borders, and currencies in
+            <p>Play fast-paced quizzes using real-world country data. Master flags, capitals, and currencies in
                 an
                 addictive, competitive arena.</p>
             <div class="agroup">
                 <a href="">
-                    <p class="rqbtn" ><i class="fa-solid fa-caret-right"></i>Random Quiz</p>
+                    <p class="rqbtn"><i class="fa-solid fa-caret-right"></i>Random Quiz</p>
                 </a>
 
             </div>
@@ -55,7 +56,7 @@
                     </div>
                     <div class="headtext">
                         <h2>High Accuracy</h2>
-                        <p>Real-world data ensures every flag, capital, and border is up to date.</p>
+                        <p>Real-world data ensures every flag, capital is up to date.</p>
                     </div>
                 </div>
                 <div class="head">
@@ -101,16 +102,6 @@
                     </div>
                 </div>
 
-                <div class="sec2div" id="border">
-                    <div class="card-icon green"><i class="fa-regular fa-map"></i></div>
-                    <h3>Border Quiz</h3>
-                    <p>Identify neighboring countries. Requires a mental map of the world.</p>
-                    <div class="card-footer">
-                        <span class="badge">Spatial Awareness</span>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </div>
-                </div>
-
                 <div class="sec2div" id="currency">
                     <div class="card-icon gold"><i class="fa-solid fa-coins"></i></div>
                     <h3>Currency Quiz</h3>
@@ -121,6 +112,33 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="section3" id="section3">
+        <div class="container">
+
+            <div class="section2head">
+                <h2>Countries Database</h2>
+                <p>Browse flags, capitals and currencies from around the world.</p>
+            </div>
+
+            <div class="search-wrapper">
+                <input type="text" id="countrySearch" placeholder="Search country...">
+            </div>
+
+            <div id="countries-container" class="countries-grid"></div>
+
+            <div class="buttons-wrapper">
+                <button id="showMoreBtn">
+                    Show All Countries
+                </button>
+
+                <button id="showLessBtn">
+                    Show Less
+                </button>
+            </div>
+
         </div>
     </section>
 
