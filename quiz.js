@@ -40,6 +40,12 @@ function startTimer() {
         } else {
             clearInterval(timerInterval);
             check("TIMEOUT", null);
+            
+            if (question >= totalQuestions) {
+                nextbtn.innerHTML = "View Results";
+            } else {
+                nextbtn.innerHTML = "Next question";
+            }
             nextbtn.style.display = "block";
         }
     }, 1000);
@@ -120,6 +126,12 @@ function countrygenerated(maxLimit) {
 variants.forEach(a => {
     a.addEventListener("click", () => {
         check(a.innerHTML, a);
+        
+        if (question >= totalQuestions) {
+            nextbtn.innerHTML = "View Results";
+        } else {
+            nextbtn.innerHTML = "Next question";
+        }
         nextbtn.style.display = "block";
     });
 });
@@ -174,6 +186,7 @@ playAgainBtn.addEventListener("click", () => {
     resultcard.style.display = "none";
     quizCard.style.display = "block";
     nextbtn.style.display = "none";
+    nextbtn.innerHTML = "Next question";
     variants.forEach(a => {
         a.classList.remove("correct", "wrong");
         a.style.pointerEvents = "auto";
