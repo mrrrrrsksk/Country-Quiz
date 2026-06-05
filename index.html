@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COUNTRY QUIZ</title>
+    <link rel="shortcut icon" href="favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
@@ -14,19 +15,37 @@
 <body>
 
     <nav>
-        <div class="container">
-            <div class="logo">
-                <div class="logodiv"><i class="fa-solid fa-earth-americas"></i></div>
-                <p>Country Quiz</p>
-            </div>
-            <menu>
-                <li><a href="#section1">Home</a></li>
-                <li><a href="#section2">Game Modes</a></li>
-                <li><a href="#section3">Countries Database</a></li>
-                <li><a href="#footer">Contact</a></li>
-            </menu>
+    <div class="container">
+        <div class="logo">
+            <div class="logodiv"><i class="fa-solid fa-earth-americas"></i></div>
+            <p>Country Quiz</p>
         </div>
-    </nav>
+        
+        <menu class="desktop-menu">
+            <li><a href="#section1">Home</a></li>
+            <li><a href="#section2">Game Modes</a></li>
+            <li><a href="#section3hr">Countries Database</a></li>
+            <li><a href="#footer">Contact</a></li>
+        </menu>
+
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </div>
+
+    <div class="sidebar-menu" id="sidebarMenu">
+        <button class="close-sidebar" id="closeSidebar">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <ul>
+            <li><a href="#section1">Home</a></li>
+            <li><a href="#section2">Game Modes</a></li>
+            <li><a href="#section3hr">Countries Database</a></li>
+            <li><a href="#footer">Contact</a></li>
+        </ul>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+</nav>
 
     <section id="section1" class="section1">
         <div class="container">
@@ -114,11 +133,11 @@
             </div>
         </div>
     </section>
-
+    <hr id="section3hr" />
     <section class="section3" id="section3">
         <div class="container">
 
-            <div class="section2head">
+            <div class="section2head" id="section3head">
                 <h2>Countries Database</h2>
                 <p>Browse flags, capitals and currencies from around the world.</p>
             </div>
@@ -144,10 +163,15 @@
 
     <footer id="footer">
         <div class="container">
+            <div class="footer-contacts">
+                <a href="https://github.com/mrrrrrsksk" target="_blank">GitHub</a>
+                <a href="tel:+994557727010">Phone: +994 (55) 772 70 10</a>
+                <a href="mailto:qorcuyevrafael@gmail.com">Email: qorcuyevrafael@gmail.com</a>
+            </div>
+            <hr class="footer-divider">
             <p>&copy; 2026 Country Quiz Arena. All rights reserved.</p>
         </div>
     </footer>
-
     <script src="script.js"></script>
 
 </body>
