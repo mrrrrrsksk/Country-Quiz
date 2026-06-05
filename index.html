@@ -15,37 +15,37 @@
 <body>
 
     <nav>
-    <div class="container">
-        <div class="logo">
-            <div class="logodiv"><i class="fa-solid fa-earth-americas"></i></div>
-            <p>Country Quiz</p>
+        <div class="container">
+            <div class="logo">
+                <div class="logodiv"><i class="fa-solid fa-earth-americas"></i></div>
+                <p>Country Quiz</p>
+            </div>
+
+            <menu class="desktop-menu">
+                <li><a href="#section1">Home</a></li>
+                <li><a href="#section2">Game Modes</a></li>
+                <li><a href="#section3hr">Countries Database</a></li>
+                <li><a href="#footer">Contact</a></li>
+            </menu>
+
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
         </div>
-        
-        <menu class="desktop-menu">
-            <li><a href="#section1">Home</a></li>
-            <li><a href="#section2">Game Modes</a></li>
-            <li><a href="#section3hr">Countries Database</a></li>
-            <li><a href="#footer">Contact</a></li>
-        </menu>
 
-        <button class="menu-toggle" id="menuToggle">
-            <i class="fa-solid fa-bars"></i>
-        </button>
-    </div>
-
-    <div class="sidebar-menu" id="sidebarMenu">
-        <button class="close-sidebar" id="closeSidebar">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
-        <ul>
-            <li><a href="#section1">Home</a></li>
-            <li><a href="#section2">Game Modes</a></li>
-            <li><a href="#section3hr">Countries Database</a></li>
-            <li><a href="#footer">Contact</a></li>
-        </ul>
-    </div>
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
-</nav>
+        <div class="sidebar-menu" id="sidebarMenu">
+            <button class="close-sidebar" id="closeSidebar">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <ul>
+                <li><a href="#section1">Home</a></li>
+                <li><a href="#section2">Game Modes</a></li>
+                <li><a href="#section3hr">Countries Database</a></li>
+                <li><a href="#footer">Contact</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    </nav>
 
     <section id="section1" class="section1">
         <div class="container">
@@ -54,10 +54,9 @@
                 an
                 addictive, competitive arena.</p>
             <div class="agroup">
-                <a href="">
-                    <p class="rqbtn"><i class="fa-solid fa-caret-right"></i>Random Quiz</p>
+                <a href="#" class="rqbtn">
+                    <i class="fa-solid fa-caret-right"></i>Random Quiz
                 </a>
-
             </div>
             <div class="headgr">
                 <div class="head">
@@ -160,6 +159,18 @@
 
         </div>
     </section>
+
+    <div class="quiz-modal-overlay" id="quizModalOverlay">
+        <div class="quiz-modal">
+            <h3>Enter the Number of Questions</h3>
+            <p>Please select the number of questions you want to play:</p>
+            <input type="number" id="modalQuestionCount" min="1" max="50" value="10">
+            <div class="modal-buttons">
+                <button id="modalCancelBtn" class="modal-btn cancel">Ləğv Et</button>
+                <button id="modalStartBtn" class="modal-btn start">Start</button>
+            </div>
+        </div>
+    </div>
 
     <footer id="footer">
         <div class="container">

@@ -13,6 +13,46 @@ let closeSidebar = document.getElementById("closeSidebar");
 let sidebarMenu = document.getElementById("sidebarMenu");
 let sidebarOverlay = document.getElementById("sidebarOverlay");
 let sidebarLinks = document.querySelectorAll(".sidebar-menu ul li a");
+let quizModalOverlay = document.getElementById("quizModalOverlay");
+let modalQuestionCount = document.getElementById("modalQuestionCount");
+let modalCancelBtn = document.getElementById("modalCancelBtn");
+let modalStartBtn = document.getElementById("modalStartBtn");
+
+rqbtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    let nm = Math.floor(Math.random() * 3);
+    gm = gamemodes[nm];
+    openQuizModal(gm);
+});
+
+quizContainer.addEventListener("click", function (event) {
+    const clickedCard = event.target.closest(".sec2div");
+    if (clickedCard) {
+        gm = clickedCard.id;
+        openQuizModal(gm);
+    }
+});
+
+function openQuizModal(mode) {
+    localStorage.setItem("selectedMode", mode);
+    quizModalOverlay.classList.add("open");
+    document.body.style.overflow = "hidden";
+}
+
+function closeQuizModal() {
+    quizModalOverlay.classList.remove("open");
+    document.body.style.overflow = "";
+}
+
+modalCancelBtn.addEventListener("click", closeQuizModal);
+
+modalStartBtn.addEventListener("click", () => {
+    let count = parseInt(modalQuestionCount.value) || 10;
+    if (count < 1) count = 1;
+    if (count > 50) count = 50;
+    localStorage.setItem("quizQuestionCount", count);
+    window.location.href = "quiz.html";
+});
 
 function openMenu() {
     sidebarMenu.classList.add("active");
@@ -34,44 +74,17 @@ sidebarLinks.forEach(link => {
     link.addEventListener("click", closeMenu);
 });
 
-rqbtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    let nm = Math.floor(Math.random() * 3);
-    gm = gamemodes[nm];
-    localStorage.setItem("selectedMode", gm);
-    window.location.href = "quiz.html";
-});
-
-quizContainer.addEventListener("click", function (event) {
-    const clickedCard = event.target.closest(".sec2div");
-    if (clickedCard) {
-        gm = clickedCard.id;
-        localStorage.setItem("selectedMode", gm);
-        window.location.href = "quiz.html";
-    }
-});
-
 fetch("https://restcountries.com/v3.1/all?fields=name,capital,currencies,flags")
     .then(res => res.json())
     .then(data => {
         allCountries = data.filter(country => {
-            const hasFlag =
-                country.flags &&
-                country.flags.png &&
-                country.flags.png.trim() !== "";
-            const hasCapital =
-                country.capital &&
-                country.capital.length > 0 &&
-                country.capital[0];
-            const hasCurrency =
-                country.currencies &&
-                Object.keys(country.currencies).length > 0;
+            const hasFlag = country.flags && country.flags.png && country.flags.png.trim() !== "";
+            const hasCapital = country.capital && country.capital.length > 0 && country.capital[0];
+            const hasCurrency = country.currencies && Object.keys(country.currencies).length > 0;
             const excluded = ["Afghanistan"];
             return hasFlag && hasCapital && hasCurrency && !excluded.includes(country.name.common);
         });
-        allCountries.sort((a, b) =>
-            a.name.common.localeCompare(b.name.common)
-        );
+        allCountries.sort((a, b) => a.name.common.localeCompare(b.name.common));
         filteredCountries = [...allCountries];
         renderCountries(filteredCountries.slice(0, 6));
     })
@@ -80,25 +93,14 @@ fetch("https://restcountries.com/v3.1/all?fields=name,capital,currencies,flags")
 function renderCountries(countries) {
     countriesContainer.innerHTML = "";
     countries.forEach(country => {
-        const currency =
-            Object.values(country.currencies)[0]?.name || "N/A";
+        const currency = Object.values(country.currencies)[0]?.name || "N/A";
         countriesContainer.innerHTML += `
             <div class="country-card">
-                <img
-                    src="${country.flags.png}"
-                    alt="${country.name.common}"
-                    onerror="this.closest('.country-card').remove()"
-                >
+                <img src="${country.flags.png}" alt="${country.name.common}" onerror="this.closest('.country-card').remove()">
                 <div class="country-info">
                     <h3>${country.name.common}</h3>
-                    <p>
-                        <strong>Capital:</strong>
-                        ${country.capital[0]}
-                    </p>
-                    <p>
-                        <strong>Currency:</strong>
-                        ${currency}
-                    </p>
+                    <p><strong>Capital:</strong> ${country.capital[0]}</p>
+                    <p><strong>Currency:</strong> ${currency}</p>
                 </div>
             </div>
         `;
@@ -115,10 +117,22 @@ showLessBtn.addEventListener("click", () => {
     renderCountries(filteredCountries.slice(0, 6));
     showLessBtn.style.display = "none";
     showMoreBtn.style.display = "inline-block";
-    countriesContainer.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
+    countriesContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+modalQuestionCount.addEventListener("keydown", (e) => {
+    if (e.key === "e" || e.key === "E" || e.key === "-" || e.key === "+") {
+        e.preventDefault();
+    }
+});
+
+modalQuestionCount.addEventListener("input", () => {
+    let value = parseInt(modalQuestionCount.value);
+    if (value < 1) {
+        modalQuestionCount.value = 1;
+    } else if (value > 50) {
+        modalQuestionCount.value = 50;
+    }
 });
 
 countrySearch.addEventListener("input", (e) => {
@@ -131,8 +145,7 @@ countrySearch.addEventListener("input", (e) => {
         return;
     }
     filteredCountries = allCountries.filter(country => {
-        const currency =
-            Object.values(country.currencies)[0]?.name?.toLowerCase() || "";
+        const currency = Object.values(country.currencies)[0]?.name?.toLowerCase() || "";
         return (
             country.name.common.toLowerCase().includes(value) ||
             country.capital[0].toLowerCase().includes(value) ||
