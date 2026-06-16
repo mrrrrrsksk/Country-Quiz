@@ -40,7 +40,7 @@ function startTimer() {
         } else {
             clearInterval(timerInterval);
             check("TIMEOUT", null);
-            
+
             if (question >= totalQuestions) {
                 nextbtn.innerHTML = "View Results";
             } else {
@@ -65,10 +65,27 @@ function quiz(gamemode) {
 
     if (allQuizCountries.length === 0) {
         fetch("https://restcountries.com/v3.1/all?fields=name,capital,currencies,flags")
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(`HTTP Error: ${res.status}`);
+                }
+                return res.json();
+            })
             .then(data => {
-                allQuizCountries = data.filter(c => c.name?.common && c.flags?.png && c.capital?.length && c.currencies);
+                allQuizCountries = data.filter(c =>
+                    c.name?.common &&
+                    c.flags?.png &&
+                    c.capital?.length &&
+                    c.currencies
+                );
+
                 setupQuestion(gamemode);
+            })
+            .catch(err => {
+                console.error("API Error:", err);
+
+                questionh2.innerHTML =
+                    "Failed to load country data. Please refresh the page.";
             });
     } else {
         setupQuestion(gamemode);
@@ -82,7 +99,7 @@ function setupQuestion(gamemode) {
 
     let countries = countrygenerated(allQuizCountries.length);
     let data = allQuizCountries;
-    
+
     correctname = data[countries[0]].name.common;
     let correctindex = countries[0];
     countries.sort(() => Math.random() - 0.5);
@@ -126,7 +143,7 @@ function countrygenerated(maxLimit) {
 variants.forEach(a => {
     a.addEventListener("click", () => {
         check(a.innerHTML, a);
-        
+
         if (question >= totalQuestions) {
             nextbtn.innerHTML = "View Results";
         } else {
